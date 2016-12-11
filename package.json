@@ -1,0 +1,23 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "an application that calls twitter,omdb & spotify apis and logs to terminal",
+  "main": "keys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pnickolas1/liri-node-app.git"
+  },
+  "keywords": [
+    "node.js",
+    "api"
+  ],
+  "author": "peter tountas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pnickolas1/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/Pnickolas1/liri-node-app#readme"
+}

@@ -1,4 +1,6 @@
 var Twitter = require('twitter');
+var spotify = require('spotify');
+
 
 var keysTokens = require("./keys.js")
 
@@ -20,16 +22,22 @@ var params = {screen_name: 'Pnickolas',
 
 
 
-
 if(command === 'twitter'){
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
 	  	console.log(tweets);
 	  }
 	});
+} else if(command != 'spotify-this-song'){
+	spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+    		if ( !err ) {
+       					console.log(data);
+    					}else if (err){
+    						console.log('Error occurred: ' + err);
+    						return;
+    					}
+					
+});
 
-	} else if(command != 'twitter'){
-		console.log('please log \'twitter\'');
-};
 
 

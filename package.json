@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Pnickolas1/liri-node-app#readme",
   "dependencies": {
+    "request": "^2.79.0",
     "spotify": "^0.3.0",
     "twitter": "^1.6.0"
   }

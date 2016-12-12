@@ -23,18 +23,18 @@ var client = new Twitter({
 
 // THESE ARE PARAMETERS BEING PASSED INTO THE TWITTER SEARCH
 var params = {screen_name: 'Pnickolas',
-			count: 1};
+			count: 1,
+			};
 
 if(command === 'my-tweets'){
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
 	  	console.log(tweets)
-	  	console.log(response)
+	  	console.log(tweets.user)
 	  }
 	});
 } else if(command === 'spotify-this-song'){
 	console.log('spotify')					
 };
-
 
 

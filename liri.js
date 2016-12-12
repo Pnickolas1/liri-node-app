@@ -1,11 +1,14 @@
+
+var fs = require('fs');
 var Twitter = require('twitter');
 var spotify = require('spotify');
 
-
+// LINK TO KEYS AND TOKENS PAGE FOR TWITTER API ACCESS
 var keysTokens = require("./keys.js")
 
 // takes the argument and tells the application logic to follow
 var command = process.argv[2];
+var songTitle = process.argv[3];
 
 // twitter api keys & tokens
 var client = new Twitter({
@@ -16,28 +19,22 @@ var client = new Twitter({
 });
  
 
+
+
 // THESE ARE PARAMETERS BEING PASSED INTO THE TWITTER SEARCH
 var params = {screen_name: 'Pnickolas',
 			count: 1};
 
-
-
-if(command === 'twitter'){
+if(command === 'my-tweets'){
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	  if (!error) {
-	  	console.log(tweets);
+	  	console.log(tweets)
+	  	console.log(response)
 	  }
 	});
-} else if(command != 'spotify-this-song'){
-	spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
-    		if ( !err ) {
-       					console.log(data);
-    					}else if (err){
-    						console.log('Error occurred: ' + err);
-    						return;
-    					}
-					
-});
+} else if(command === 'spotify-this-song'){
+	console.log('spotify')					
+};
 
 
 

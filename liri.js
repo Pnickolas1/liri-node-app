@@ -48,20 +48,21 @@ if(command === 'movie-this'){
 				name: 'name',
 				message: "Movie name:"
 	 		}]).then(function(answers){
-	 			
-	 			console.log(answers.name);
 
-	 			request("http://www.omdbapi.com/?t=" +  answers.name +"&y=&plot=short&r=json", function(error, response, body) {
+	 			request("http://www.omdbapi.com/?t=" +  answers.name +"&y=&plot=full&r=json&tomatoes=true", function(error, response, body) {
 	 			
 	 			if (!error && response.statusCode === 200) {
 
-	 				console.log('	Movie: ' + JSON.parse(body).Title );
+	 				console.log("\n" + '	Movie: ' + JSON.parse(body).Title );
 	 				console.log("\n")
 	 				console.log("Released: " + JSON.parse(body).Released);
 	 				console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
 	 				console.log("Produced in: " + JSON.parse(body).Country);
 	 				console.log("Language: " + JSON.parse(body).Language);
 	 				console.log("Plot: " + JSON.parse(body).Plot);
+	 				console.log("Actors: " + JSON.parse(body).Actors);
+	 				console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating);
+	 				console.log("Rotten Tomatoes URL: " + JSON.parse(body).tomatoURL + "\n");
 	 			}
 	 	});
 	});

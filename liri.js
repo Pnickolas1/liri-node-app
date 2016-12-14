@@ -55,9 +55,14 @@ if(command === 'movie-this'){
 	 			
 	 			if (!error && response.statusCode === 200) {
 
-	 				console.log('You searched for: ' + JSON.parse(body).Title + "\n");
+	 				console.log('	Movie: ' + JSON.parse(body).Title );
+	 				console.log("\n")
+	 				console.log("Released: " + JSON.parse(body).Released);
 	 				console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+	 				console.log("Produced in: " + JSON.parse(body).Country);
+	 				console.log("Language: " + JSON.parse(body).Language);
+	 				console.log("Plot: " + JSON.parse(body).Plot);
 	 			}
-	 		});
+	 	});
 	});
 };

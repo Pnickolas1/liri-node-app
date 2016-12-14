@@ -1,5 +1,9 @@
 
 var fs = require('fs');
+
+// NPM MODULE FOR GETTING API DATA FROM OMDB
+var request = require("request");
+
 var Twitter = require('twitter');
 var spotify = require('spotify');
 
@@ -40,14 +44,20 @@ if(command === 'my-tweets'){
 
 if(command === 'movie-this'){
 
-	inquire.prompt([{
+	inquirer.prompt([{
 				name: 'name',
-				message: "Movie name: "
+				message: "Movie name:"
 	 		}]).then(function(answers){
-	 			console.log('this is a test');
+	 			
+	 			console.log(answers.name);
 
+	 			request("http://www.omdbapi.com/?t=" +  answers.name +"&y=&plot=short&r=json", function(error, response, body) {
+	 			
+	 			if (!error && response.statusCode === 200) {
+
+	 				console.log('You searched for: ' + JSON.parse(body).Title + "\n");
+	 				console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+	 			}
 	 		});
-
+	});
 };
-
-

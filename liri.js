@@ -5,6 +5,7 @@ var fs = require('fs');
 var request = require("request");
 
 var Twitter = require('twitter');
+
 var spotify = require('spotify');
 
 var inquirer = require('inquirer');
@@ -40,9 +41,7 @@ if(command === 'my-tweets'){
 	  		console.log("----- END -----");
 	  }
 	});
-}
-
-if(command === 'movie-this'){
+} else if(command === 'movie-this'){
 
 	inquirer.prompt([{
 				name: 'name',

@@ -29,6 +29,7 @@ var params = {
     screen_name: 'Pnickolas',
     count: 15,
 };
+//PUT THE FUNCTIONS INTO AN OBJECT TO ALLOW FOR EXPORT AND EXECUTION LIKE "OBJECT.DO-WHAT-IT-SAYS" from another FILE WITHOUTH HAVING TO WRITE THE CODE AGAIN
 var object = {
     "do-what-it-says": function() {
         fs.readFile('./random.txt', "utf-8", (err, data) => {
@@ -52,7 +53,7 @@ var object = {
 
             request("http://www.omdbapi.com/?t=" + answers.name + "&y=&plot=full&r=json&tomatoes=true", function(error, response, body) {
 
-                if (!error && response.statusCode === 200) {
+                if (!error && response.statusCode === 200 ) {
 
                     console.log("\n" + '    Movie: ' + JSON.parse(body).Title);
                     console.log("\n")
@@ -64,6 +65,9 @@ var object = {
                     console.log("Actors: " + JSON.parse(body).Actors);
                     console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating);
                     console.log("Rotten Tomatoes URL: " + JSON.parse(body).tomatoURL + "\n");
+                
+                } else if (response.statusCode != 200){
+                    console.log('test')
                 }
             });
         });

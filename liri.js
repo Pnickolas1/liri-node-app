@@ -45,33 +45,7 @@ var object = {
 
         });
     },
-    "movie-this": function() {
-        inquirer.prompt([{
-            name: 'name',
-            message: "Movie name:"
-        }]).then(function(answers) {
-
-            request("http://www.omdbapi.com/?t=" + answers.name + "&y=&plot=full&r=json&tomatoes=true", function(error, response, body) {
-
-                if (!error && response.statusCode === 200 ) {
-
-                    console.log("\n" + '    Movie: ' + JSON.parse(body).Title);
-                    console.log("\n")
-                    console.log("Released: " + JSON.parse(body).Released);
-                    console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
-                    console.log("Produced in: " + JSON.parse(body).Country);
-                    console.log("Language: " + JSON.parse(body).Language);
-                    console.log("Plot: " + JSON.parse(body).Plot);
-                    console.log("Actors: " + JSON.parse(body).Actors);
-                    console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating);
-                    console.log("Rotten Tomatoes URL: " + JSON.parse(body).tomatoURL + "\n");
-                
-                } else if (response.statusCode != 200){
-                    console.log('test')
-                }
-            });
-        });
-    },
+    "movie-this": require('./movie-this'),
     "my-tweets": function() {
         client.get('statuses/user_timeline', params, function(error, tweets, response) {
             if (!error) {
@@ -92,7 +66,7 @@ var object = {
 
             spotify.search({
                 type: 'track',
-                query: answers.name
+                query: answers.name || "I saw the sign"
             }, function(err, data) {
                 if (err) {
                     console.log('Error occurred: ' + err);

@@ -29,21 +29,24 @@ var params = {
     screen_name: 'Pnickolas',
     count: 15,
 };
-
-if (command === 'my-tweets') {
-    client.get('statuses/user_timeline', params, function(error, tweets, response) {
-        if (!error) {
-            console.log("----- Pnickolas tweets -----")
-            for (var i = 0; i < tweets.length; i++) {
-                console.log(tweets[i].text);
-                console.log('\n');
+var object = {
+    "do-what-it-says": function(){        
+        fs.readFile('./random.txt',"utf-8", (err,data) =>{
+            if(err) {
+                console.log('Error:', + err);   
+                 }
+            else {
+                var contents = data.split(",");
+                var newCommand = contents[0];
+                var randomSong = contents[1];
+                console.log(randomSong);
+                object[newCommand](randomSong);
             }
-            console.log("----- END -----");
-        }
-    });
-} else if (command === 'movie-this') {
 
-    inquirer.prompt([{
+        });   
+    },
+    "movie-this": function(){
+        inquirer.prompt([{
         name: 'name',
         message: "Movie name:"
     }]).then(function(answers) {
@@ -65,9 +68,20 @@ if (command === 'my-tweets') {
             }
         });
     });
-} else if (command === 'spotify-this-song') {
-
-    inquirer.prompt([{
+    },
+    "my-tweets": function(){ 
+        client.get('statuses/user_timeline', params, function(error, tweets, response) {
+        if (!error) {
+            console.log("----- Pnickolas tweets -----")
+            for (var i = 0; i < tweets.length; i++) {
+                console.log(tweets[i].text);
+                console.log('\n');
+            }
+            console.log("----- END -----");
+        }
+    });
+    },
+    "spotify-this-song": function(){inquirer.prompt([{
         name: 'name',
         message: "Search for song title: "
     }]).then(function(answers) {
@@ -87,7 +101,6 @@ if (command === 'my-tweets') {
                     var song = item.name
                     console.log(song);
 
-
                     var albumName = item.album.name
                     var preview = item.preview_url
                     var artists = item.artists
@@ -103,5 +116,6 @@ if (command === 'my-tweets') {
         });
 
     })
-
-};
+}
+}
+object[command](songTitle)

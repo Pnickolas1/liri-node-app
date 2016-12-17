@@ -52,7 +52,7 @@ if (command === 'my-tweets') {
 
             if (!error && response.statusCode === 200) {
 
-                console.log("\n" + '	Movie: ' + JSON.parse(body).Title);
+                console.log("\n" + '    Movie: ' + JSON.parse(body).Title);
                 console.log("\n")
                 console.log("Released: " + JSON.parse(body).Released);
                 console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
@@ -81,15 +81,25 @@ if (command === 'my-tweets') {
                 return;
             } else {
                 var items = data.tracks.items
-                for(var i = 0; i < items.length; i++){
-                    
-                   var item = items[i]
-                var song = item.name
+                for (var i = 0; i < items.length; i++) {
+
+                    var item = items[i]
+                    var song = item.name
                     console.log(song);
-                var album = item.album;
-                    console.log(album);
+
+
+                    var albumName = item.album.name
+                    var preview = item.preview_url
+                    var artists = item.artists
+                    for (var j = 0; j < artists.length; j++) {
+                        var artist = artists[j]
+                        console.log(artist.name );
+                    
                     }
+                         console.log("Album Name: " + albumName + "\n")        
+                        console.log("Preview Title: ",preview)
                 }
+            }
         });
 
     })

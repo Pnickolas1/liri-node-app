@@ -93,11 +93,11 @@ if (command === 'my-tweets') {
                     var artists = item.artists
                     for (var j = 0; j < artists.length; j++) {
                         var artist = artists[j]
-                        console.log(artist.name );
-                    
+                        console.log(artist.name);
+
                     }
-                         console.log("Album Name: " + albumName + "\n")        
-                        console.log("Preview Title: ",preview)
+                    console.log("Album Name: " + albumName + "\n")
+                    console.log("Preview Title: ", preview)
                 }
             }
         });
